@@ -1,35 +1,23 @@
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
-use colored::*;
+fn main () {
+    let mut x = 5;
+    println!("The value of x is: {}", x);
+    x = 6;
+    println!("The value of x is: {}", x);
 
-fn main() {
-    println!("Guess the number!");
-
-    let secret_number = rand::thread_rng().gen_range(1, 101);
-
-    println!("The secret number is: {}", secret_number);
-
-    loop {
-        println!("Please input your guess.");
-
-        let mut guess = String::new();
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
-
-        println!("You guessed: {}", guess);
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("{}", "Too small!".red()),
-            Ordering::Greater => println!("{}", "Too big!".red()),
-            Ordering::Equal => {
-                println!("{}", "You win!".green());
-                break;
-            },
-        }
+    let y = 5;
+    println!("The value of y is: {}", y);
+    let y = "some string"; // previous 'y' got shadowed
+    println!("The value of y is: {}", y);
+    {
+        println!("The value of y is: {}", y);
+        let y = 100; // shadowed here too but under a scope
+        println!("The value of y is: {}", y);
     }
+    println!("The value of y is: {}", y);
+    
+    const SOME_COUNT: u32 = 100_000; 
+    // const is not mutable in future, 
+    // unlike a let variable that can be made mutable later.
+    println!("The value of SOME_COUNT is: {}", SOME_COUNT);
+
 }
