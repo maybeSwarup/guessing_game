@@ -8,11 +8,11 @@ fn main () {
         let d = 0b1111_0000; // Binary
         let e = b'A'; // Byte (u8 only) 
     
-        let f: u8 = 255 + 1; 
+        // let f: u8 = 255 + 1; 
         // by chance if the value gets overflowed
         // it will get wrapped around to the initial value
         // like 256 will become 0 and 257 will be 1 and so forth.
-        println!("Value of f: {}", f); 
+        // println!("Value of f: {}", f); 
 
     // Floating-point numbers
         let f = 2.0;
@@ -37,5 +37,19 @@ fn main () {
         let c = 'z';
         let om = 'ૐ';
         let heart_eyed_cat = '😻';
+
+
+    // Compound datatypes:
+    // Tuples
+        let tup = ("Let's get rusty!", 100_000);
+        let (str, count) = tup;
+        let sub_count = tup.1;
+        println!("Value of sub_count: {}", sub_count);
+
+    // Arrays
+        let error_codes = [200, 404, 500];
+        let not_found = error_codes[1];
+
+        let byte = [0; 8]; // array of 0s of length 8
 
 }
