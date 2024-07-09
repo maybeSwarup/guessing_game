@@ -1,9 +1,21 @@
 fn main () {
-    let mut s1 = String::from("hello");
-    change(&mut s1);
-    println!("s1: {}", s1); // prints "hello, world"
-}
+    let mut s = String::from("hello");
 
-fn change (some_string: &mut String) {
-    some_string.push_str(", world")
+    let r1 = &s;
+    let r2 = &s;
+    
+    println!("{}, {}", r1, r2);
+
+    // unsaid rule here
+    // r1, r2 automatically gone out of scope
+    // when not used further
+
+    let r3 = &mut s;
+
+    println!("r3: {}", r3);
+
+    // println!("{}, {}", r1, r2);
+    // above line will make r1, r2
+    // come inside scope again
+    // then r3 cannot be a mutable reference
 }
