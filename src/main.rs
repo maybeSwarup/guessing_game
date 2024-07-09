@@ -1,21 +1,20 @@
+/*
+    Rules of References: 
+    1. At any given time, you can have 
+    either one mutable or many immutable references.
+    2. References must always be valid
+*/
+
 fn main () {
-    let mut s = String::from("hello");
+    let reference_to_nothing = dangle();
+    println!("s: {}", reference_to_nothing);
+}
 
-    let r1 = &s;
-    let r2 = &s;
-    
-    println!("{}, {}", r1, r2);
-
-    // unsaid rule here
-    // r1, r2 automatically gone out of scope
-    // when not used further
-
-    let r3 = &mut s;
-
-    println!("r3: {}", r3);
-
-    // println!("{}, {}", r1, r2);
-    // above line will make r1, r2
-    // come inside scope again
-    // then r3 cannot be a mutable reference
+// below code is not compilable
+// because you can't return a 
+// scoped reference out of the scope
+fn dangle () -> &String {
+    let s = String::from("hello");
+    &s
+    // scope ended
 }
